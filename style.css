@@ -1,0 +1,124 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: #1a1a2e;
+    color: #eee;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+h1 {
+    text-align: center;
+    color: #00d4ff;
+    margin-bottom: 10px;
+}
+
+.description {
+    text-align: center;
+    color: #888;
+    margin-bottom: 20px;
+}
+
+.controls {
+    background: #16213e;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.input-group:last-child {
+    margin-bottom: 0;
+}
+
+.input-group label {
+    min-width: 100px;
+    color: #aaa;
+}
+
+.input-group input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    background: #0f0f23;
+    color: #fff;
+    min-width: 200px;
+}
+
+.input-group input[type="file"] {
+    color: #aaa;
+}
+
+.input-group button {
+    padding: 10px 20px;
+    background: #00d4ff;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.2s;
+}
+
+.input-group button:hover {
+    background: #00a8cc;
+}
+
+.mapping-info {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.mapping-info span {
+    padding: 8px 15px;
+    background: #16213e;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.canvas-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+#pixelGrid {
+    border: 2px solid #333;
+    border-radius: 5px;
+    cursor: crosshair;
+    image-rendering: pixelated;
+    background: #0f0f23;
+}
+
+.status {
+    text-align: center;
+    padding: 15px;
+    background: #16213e;
+    border-radius: 5px;
+    color: #888;
+}
+
+.status.playing {
+    color: #00ff88;
+    background: #1a3a2e;
+}
