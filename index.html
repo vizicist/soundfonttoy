@@ -3,42 +3,99 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SoundFont Toy</title>
+    <title>Pixel Player</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>SoundFont Toy</h1>
+        <h1>Pixel Player</h1>
         <p class="description">Load an image, then drag your mouse over the pixel grid to play music!</p>
 
-        <div class="controls">
-            <div class="input-group">
-                <label for="imageUrl">Image URL:</label>
-                <input type="text" id="imageUrl" placeholder="Enter image URL...">
-                <button id="loadUrl">Load URL</button>
+        <div class="main-layout">
+            <div class="left-panel">
+                <div class="canvas-container">
+                    <canvas id="pixelGrid" width="512" height="512"></canvas>
+                </div>
+                <div class="status" id="status">Load an image to begin</div>
+                <div class="mapping-info">
+                    <span><strong>R</strong> = Pitch</span>
+                    <span><strong>G</strong> = Volume</span>
+                    <span><strong>B</strong> = Pan</span>
+                </div>
             </div>
-            <div class="input-group">
-                <label for="imageFile">Or upload:</label>
-                <input type="file" id="imageFile" accept="image/*">
-            </div>
-            <div class="input-group">
-                <label for="soundfontUrl">SoundFont URL:</label>
-                <input type="text" id="soundfontUrl" value="https://gleitz.github.io/midi-js-soundfonts/MusyngKite/acoustic_grand_piano-mp3.js">
-                <button id="loadSoundfont">Load SoundFont</button>
+
+            <div class="controls">
+                <div class="input-group">
+                    <label for="imageUrl">Image URL:</label>
+                    <input type="text" id="imageUrl" value="https://media.istockphoto.com/id/521577939/photo/advance-of-inner-paint.jpg?s=612x612&w=0&k=20&c=cUO1rlOng7aqJPXUrCiG0KmC-9y7LgCxkYSuj2tRito=">
+                    <button id="loadUrl">Load</button>
+                </div>
+                <div class="input-group">
+                    <label>Webcam:</label>
+                    <button id="captureWebcam">Capture</button>
+                </div>
+                <div class="input-group">
+                    <label for="soundfontUrl">SoundFont:</label>
+                    <input type="text" id="soundfontUrl" value="https://gleitz.github.io/midi-js-soundfonts/MusyngKite/acoustic_grand_piano-mp3.js">
+                    <button id="loadSoundfont">Load</button>
+                </div>
+                <div class="input-group">
+                    <label for="minPitch">Pitch Range:</label>
+                    <input type="number" id="minPitch" value="40" min="0" max="127">
+                    <span>to</span>
+                    <input type="number" id="maxPitch" value="100" min="0" max="127">
+                </div>
+                <div class="input-group">
+                    <label for="scaleSelect">Scale:</label>
+                    <select id="scaleSelect">
+                        <option value="chromatic">Chromatic</option>
+                        <option value="major" selected>Major</option>
+                        <option value="minor">Natural Minor</option>
+                        <option value="harmonicMinor">Harmonic Minor</option>
+                        <option value="melodicMinor">Melodic Minor</option>
+                        <option value="pentatonicMajor">Pentatonic Major</option>
+                        <option value="pentatonicMinor">Pentatonic Minor</option>
+                        <option value="blues">Blues</option>
+                        <option value="dorian">Dorian</option>
+                        <option value="phrygian">Phrygian</option>
+                        <option value="lydian">Lydian</option>
+                        <option value="mixolydian">Mixolydian</option>
+                        <option value="wholeTone">Whole Tone</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="playModeSelect">Play Mode:</label>
+                    <select id="playModeSelect">
+                        <option value="direct">Direct</option>
+                        <option value="line">Line</option>
+                        <option value="lineLoop" selected>Looping Lines</option>
+                    </select>
+                    <button id="stopAllLines">Stop All</button>
+                </div>
+                <div class="input-group">
+                    <label for="timingSelect">Timing:</label>
+                    <select id="timingSelect">
+                        <option value="quarter">1/4</option>
+                        <option value="eighth">1/8</option>
+                        <option value="sixteenth" selected>1/16</option>
+                        <option value="random">Random</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="resolutionSelect">Resolution:</label>
+                    <select id="resolutionSelect">
+                        <option value="128" selected>128x128</option>
+                        <option value="64">64x64</option>
+                        <option value="32">32x32</option>
+                        <option value="16">16x16</option>
+                    </select>
+                </div>
             </div>
         </div>
 
-        <div class="mapping-info">
-            <span><strong>Red</strong> = Pitch (0-127)</span>
-            <span><strong>Green</strong> = Volume (0-100%)</span>
-            <span><strong>Blue</strong> = Pan (Left-Right)</span>
+        <div class="piano-container">
+            <div id="piano" class="piano"></div>
         </div>
-
-        <div class="canvas-container">
-            <canvas id="pixelGrid" width="512" height="512"></canvas>
-        </div>
-
-        <div class="status" id="status">Load an image to begin</div>
     </div>
 
     <script src="app.js"></script>

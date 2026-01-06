@@ -7,39 +7,54 @@ body {
     background: #1a1a2e;
     color: #eee;
     margin: 0;
-    padding: 20px;
+    padding: 15px;
     min-height: 100vh;
+    font-size: 12px;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
 h1 {
     text-align: center;
     color: #00d4ff;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    font-size: 24px;
 }
 
 .description {
     text-align: center;
     color: #888;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
+    font-size: 12px;
+}
+
+/* Main two-column layout */
+.main-layout {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.left-panel {
+    flex-shrink: 0;
 }
 
 .controls {
     background: #16213e;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 20px;
+    padding: 12px;
+    border-radius: 8px;
+    flex: 1;
+    min-width: 280px;
 }
 
 .input-group {
     display: flex;
-    gap: 10px;
+    gap: 6px;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     flex-wrap: wrap;
 }
 
@@ -48,32 +63,63 @@ h1 {
 }
 
 .input-group label {
-    min-width: 100px;
+    min-width: 70px;
     color: #aaa;
+    font-size: 11px;
 }
 
 .input-group input[type="text"] {
     flex: 1;
-    padding: 10px;
+    padding: 6px 8px;
     border: 1px solid #333;
-    border-radius: 5px;
+    border-radius: 4px;
     background: #0f0f23;
     color: #fff;
-    min-width: 200px;
+    font-size: 11px;
+    min-width: 120px;
 }
 
 .input-group input[type="file"] {
     color: #aaa;
+    font-size: 11px;
+    max-width: 180px;
+}
+
+.input-group input[type="number"] {
+    width: 50px;
+    padding: 6px 8px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background: #0f0f23;
+    color: #fff;
+    font-size: 11px;
+    text-align: center;
+}
+
+.input-group span {
+    color: #888;
+    font-size: 11px;
+}
+
+.input-group select {
+    padding: 6px 8px;
+    border: 1px solid #333;
+    border-radius: 4px;
+    background: #0f0f23;
+    color: #fff;
+    cursor: pointer;
+    font-size: 11px;
 }
 
 .input-group button {
-    padding: 10px 20px;
+    padding: 6px 12px;
     background: #00d4ff;
     color: #000;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
     font-weight: bold;
+    font-size: 11px;
     transition: background 0.2s;
 }
 
@@ -84,22 +130,20 @@ h1 {
 .mapping-info {
     display: flex;
     justify-content: center;
-    gap: 30px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 8px;
 }
 
 .mapping-info span {
-    padding: 8px 15px;
+    padding: 4px 10px;
     background: #16213e;
-    border-radius: 5px;
-    font-size: 14px;
+    border-radius: 4px;
+    font-size: 11px;
 }
 
 .canvas-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
 }
 
 #pixelGrid {
@@ -112,13 +156,103 @@ h1 {
 
 .status {
     text-align: center;
-    padding: 15px;
+    padding: 8px;
     background: #16213e;
-    border-radius: 5px;
+    border-radius: 4px;
     color: #888;
+    margin-top: 8px;
+    font-size: 11px;
 }
 
 .status.playing {
     color: #00ff88;
     background: #1a3a2e;
+}
+
+/* Piano keyboard styles */
+.piano-container {
+    margin-top: 15px;
+    overflow-x: auto;
+    padding: 8px 0;
+}
+
+.piano {
+    display: flex;
+    position: relative;
+    height: 100px;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.piano-key {
+    position: relative;
+    cursor: pointer;
+    transition: background 0.1s;
+}
+
+.piano-key.white {
+    width: 20px;
+    height: 100px;
+    background: linear-gradient(to bottom, #f8f8f8, #e8e8e8);
+    border: 1px solid #999;
+    border-radius: 0 0 3px 3px;
+    z-index: 1;
+}
+
+.piano-key.white:hover {
+    background: linear-gradient(to bottom, #fff, #f0f0f0);
+}
+
+.piano-key.white.active {
+    background: linear-gradient(to bottom, #00ff88, #00cc6a);
+    box-shadow: 0 0 15px #00ff88;
+}
+
+.piano-key.black {
+    width: 14px;
+    height: 62px;
+    background: linear-gradient(to bottom, #333, #111);
+    border: 1px solid #000;
+    border-radius: 0 0 3px 3px;
+    margin-left: -7px;
+    margin-right: -7px;
+    z-index: 2;
+}
+
+.piano-key.black:hover {
+    background: linear-gradient(to bottom, #444, #222);
+}
+
+.piano-key.black.active {
+    background: linear-gradient(to bottom, #00cc6a, #009950);
+    box-shadow: 0 0 15px #00ff88;
+}
+
+.piano-key .note-label {
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 7px;
+    color: #666;
+    pointer-events: none;
+}
+
+.piano-key.black .note-label {
+    color: #888;
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 900px) {
+    .main-layout {
+        flex-direction: column;
+    }
+
+    .left-panel {
+        order: 1;
+    }
+
+    .controls {
+        order: 2;
+    }
 }
